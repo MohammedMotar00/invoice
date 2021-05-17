@@ -1,15 +1,15 @@
 <template>
   <v-app>
-    <!-- <v-main class="mb-4 mx-auto" style="width: 100%">
-      <router-view />
-    </v-main> -->
-    <div>hej</div>
+    <Invoices />
   </v-app>
 </template>
 
 <script>
+import Invoices from "./components/Invoices";
+
 export default {
   name: "App",
+  components: { Invoices },
 };
 </script>
 

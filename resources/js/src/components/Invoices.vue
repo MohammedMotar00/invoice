@@ -18,11 +18,11 @@
           <tr
             v-for="(item, index) in dataArr[0]"
             :key="item.id"
-            style="cursor: pointer"
             @click="onClick(item.id, index)"
             ref="row"
             :style="{
               backgroundColor: currentIndex == index ? '#EEEEEE' : null,
+              cursor: 'pointer',
             }"
           >
             <td
@@ -52,10 +52,7 @@
 
     <v-container class="blue">
       <div class="d-flex justify-end">
-        <div
-          class="white d-flex align-center justify-center"
-          style="height: 50px; width: 50px"
-        >
+        <div class="white d-flex align-center justify-center menu">
           <v-app-bar-nav-icon></v-app-bar-nav-icon>
         </div>
       </div>
@@ -75,27 +72,27 @@
                 </v-col>
 
                 <div class="d-flex flex-wrap justify-content-center">
-                  <v-col cols="6" class="">
+                  <v-col cols="6">
                     <h5 class="grey-text--darken-3 text-bold">TYPE</h5>
                     <p>{{ item.type }}</p>
                   </v-col>
 
-                  <v-col cols="6" class="">
+                  <v-col cols="6">
                     <h5>ACCOUNT NAME</h5>
                     <p>{{ item.account_name }}</p>
                   </v-col>
 
-                  <v-col cols="6" class="">
+                  <v-col cols="6">
                     <h5>STATUS</h5>
                     <p>{{ item.status }}</p>
                   </v-col>
 
-                  <v-col cols="6" class="">
+                  <v-col cols="6">
                     <h5>CURRENCY</h5>
                     <p>{{ item.currency }}</p>
                   </v-col>
 
-                  <v-col cols="6" class="">
+                  <v-col cols="6">
                     <h5>BALANCE</h5>
                     <p>{{ item.balance }}</p>
                   </v-col>
@@ -115,7 +112,7 @@
           class="mt-4"
           @click="open = false"
         >
-          <v-icon class="white--text" style="cursor: pointer">mdi-close</v-icon>
+          <v-icon class="white--text close-icon">mdi-close</v-icon>
         </div>
       </div>
     </v-container>
@@ -133,10 +130,6 @@ export default {
       dataArr: [],
       singleInvoice: [],
       open: false,
-      styles: {
-        backgroundColor: null,
-        borderLeft: null,
-      },
       currentIndex: null,
       image: img,
     };
@@ -164,5 +157,14 @@ img {
   height: 100%;
   width: 100%;
   object-fit: fill;
+}
+
+.menu {
+  width: 50px;
+  height: 50px;
+}
+
+.close-icon {
+  cursor: pointer;
 }
 </style>

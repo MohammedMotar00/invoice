@@ -2105,9 +2105,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2117,10 +2114,6 @@ __webpack_require__.r(__webpack_exports__);
       dataArr: [],
       singleInvoice: [],
       open: false,
-      styles: {
-        backgroundColor: null,
-        borderLeft: null
-      },
       currentIndex: null,
       image: _assets_image_png__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
@@ -2162,7 +2155,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "img[data-v-31b82526] {\n  height: 100%;\n  width: 100%;\n  -o-object-fit: fill;\n     object-fit: fill;\n}", ""]);
+exports.push([module.i, "img[data-v-31b82526] {\n  height: 100%;\n  width: 100%;\n  -o-object-fit: fill;\n     object-fit: fill;\n}\n.menu[data-v-31b82526] {\n  width: 50px;\n  height: 50px;\n}\n.close-icon[data-v-31b82526] {\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -3361,10 +3354,10 @@ var render = function() {
                         key: item.id,
                         ref: "row",
                         refInFor: true,
-                        staticStyle: { cursor: "pointer" },
                         style: {
                           backgroundColor:
-                            _vm.currentIndex == index ? "#EEEEEE" : null
+                            _vm.currentIndex == index ? "#EEEEEE" : null,
+                          cursor: "pointer"
                         },
                         on: {
                           click: function($event) {
@@ -3474,10 +3467,7 @@ var render = function() {
         _c("div", { staticClass: "d-flex justify-end" }, [
           _c(
             "div",
-            {
-              staticClass: "white d-flex align-center justify-center",
-              staticStyle: { height: "50px", width: "50px" }
-            },
+            { staticClass: "white d-flex align-center justify-center menu" },
             [_c("v-app-bar-nav-icon")],
             1
           )
@@ -3603,14 +3593,9 @@ var render = function() {
                 }
               },
               [
-                _c(
-                  "v-icon",
-                  {
-                    staticClass: "white--text",
-                    staticStyle: { cursor: "pointer" }
-                  },
-                  [_vm._v("mdi-close")]
-                )
+                _c("v-icon", { staticClass: "white--text close-icon" }, [
+                  _vm._v("mdi-close")
+                ])
               ],
               1
             )

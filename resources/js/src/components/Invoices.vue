@@ -16,12 +16,21 @@
         </thead>
         <tbody>
           <tr
-            v-for="item in dataArr[0]"
+            v-for="(item, index) in dataArr[0]"
             :key="item.id"
             style="cursor: pointer"
-            @click="onClick(item.id)"
+            @click="onClick(item.id, index)"
+            ref="row"
+            :style="{
+              backgroundColor: currentIndex == index ? '#EEEEEE' : null,
+            }"
           >
-            <td v-ripple>
+            <td
+              v-ripple
+              :style="{
+                borderLeft: currentIndex == index ? '4px solid blue' : null,
+              }"
+            >
               {{ item.type }}
             </td>
             <td v-ripple>
@@ -53,12 +62,9 @@
       <div class="d-flex flex-column justify-center align-center">
         <div class="mb-4" :style="{ display: open ? 'block' : 'none' }">
           <v-card width="600">
-            <v-img
-              height="200px"
-              :src="require('../img/image.png')"
-              aspect-ratio="1"
-            >
-            </v-img>
+            <div>
+              <img :src="image" alt="image" />
+            </div>
 
             <div v-for="item in singleInvoice" :key="item.id">
               <v-row class="d-flex flex-wrap px-10">
@@ -118,6 +124,7 @@
 
 <script>
 import axios from "axios";
+import img from "../assets/image.png";
 
 export default {
   name: "Invoices",
@@ -126,21 +133,25 @@ export default {
       dataArr: [],
       singleInvoice: [],
       open: false,
-      image: "../img/image.png",
+      styles: {
+        backgroundColor: null,
+        borderLeft: null,
+      },
+      currentIndex: null,
+      image: img,
     };
   },
   mounted() {
     axios("api/invoices").then((res) => {
-      // console.log(res);
       this.dataArr.push(res.data);
     });
   },
   methods: {
-    onClick(id) {
+    onClick(id, index) {
       axios(`api/invoice/${id}`).then((res) => {
-        console.log(res.data);
         this.singleInvoice = [];
         this.singleInvoice.push(res.data);
+        this.currentIndex = index;
         this.open = true;
       });
     },
@@ -149,4 +160,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
 </style>
